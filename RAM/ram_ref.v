@@ -21,22 +21,19 @@ always @(posedge clk) begin
             case ({din[9:8]})
                 2'b00: begin
                   wr_address <= din[7:0];
-                  tx_valid <= 0;
                 end
                 2'b01: begin
                   mem[wr_address] <= din[7:0];
-                  tx_valid <= 0;
                 end
                 2'b10: begin
                   rd_address <= din[7:0];
-                  tx_valid <= 0;
                 end
                 2'b11: begin
                   dout <= mem[rd_address];
-                  tx_valid <= 1;
                 end
             endcase
         end
+        tx_valid <= (din[9] && din[8] && rx_valid)? 1'b1 : 1'b0;
     end
 end
 endmodule

@@ -29,8 +29,20 @@ class ram_seq_item extends uvm_sequence_item;
     }
 
     constraint rd_only_constraint
-    {
-            din[9:8] inside {RD_ADDR, RD_DATA};
+    { 
+            if(old_operation == RD_ADDR)
+            {
+                din[9:8] == RD_DATA;
+            }
+            else if (old_operation == RD_DATA)
+            {
+                din[9:8] == RD_ADDR;
+            } 
+            else
+            {
+                din[9:8] inside {RD_ADDR, RD_DATA};
+            }      
+            
     }
 
     constraint rd_wr_constraint
