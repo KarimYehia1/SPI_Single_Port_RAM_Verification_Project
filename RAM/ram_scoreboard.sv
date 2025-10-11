@@ -30,7 +30,7 @@ class ram_scoreboard extends uvm_scoreboard;
         forever begin
             sb_fifo.get(item);
             if(item.dout != item.dout_ref || item.tx_valid != item.tx_valid_ref) begin
-                $display("Error, transation sent by dut is %s while dout_ref = %b", item.convert2string_stimulus(), item.dout_ref);
+                $display("Error, transation sent by dut is %s while dout_ref = %b and tx_ref = %b", item.convert2string_stimulus(), item.dout_ref, item.tx_valid_ref);
                 error_count++;
             end
             else begin
