@@ -125,10 +125,7 @@ always @(posedge ss_if.clk) begin
 end
 // READ_ADD and READ_DATA is replaced
 // counter not equal 0 at reset 
- `ifdef SIM
- sequence ssn_eventually_high;
-  ss_if.SS_n [->1];
-endsequence  
+ `ifdef SIM 
 
 sequence write_add_seq;
   (ss_if.SS_n==1) ##1 (ss_if.SS_n==0) ##1 (ss_if.MOSI == 0)[*3];
