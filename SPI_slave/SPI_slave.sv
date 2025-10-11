@@ -116,7 +116,7 @@ always @(posedge ss_if.clk) begin
                     end
                     else begin
                         ss_if.rx_valid <= 1;
-                        counter <= 8;
+                        counter <= 9;
                     end
                 end
             end
@@ -125,6 +125,8 @@ always @(posedge ss_if.clk) begin
 end
 // READ_ADD and READ_DATA is replaced
 // counter not equal 0 at reset 
+// rx_valid in read data 
+//counter in read_data
  `ifdef SIM 
 
 sequence write_add_seq;

@@ -9,8 +9,7 @@ parameter WRITE=3'b010;
 parameter READ_ADD=3'b011;
 parameter  READ_DATA=3'b100;
 reg ADDRESS_read; // this is signal to increment when  reading an address
-reg[3:0] counter_up;
-reg[3:0] counter_down;
+reg[3:0] counter;
 reg [2:0] cs ,ns;
 always@(posedge clk) begin 
     if(~rst_n)
@@ -29,7 +28,8 @@ always@(*) begin
    CHK_CMD : begin 
     if (SS_n)
     ns = IDLE;
-    else if( ~MOSI) begin 
+    else begin
+     if( ~MOSI) begin 
         ns=WRITE;
     end 
     else begin
@@ -39,6 +39,7 @@ always@(*) begin
         1'bx: ns=READ_ADD;
         endcase
     end
+   end
    end
    WRITE: begin
      if(SS_n==0 )
@@ -62,7 +63,6 @@ always@(*) begin
         ns=IDLE;
     end
    end
-   default  : ns=IDLE;
     endcase
 end
 always @(posedge clk) begin
@@ -72,52 +72,55 @@ always @(posedge clk) begin
         ADDRESS_read<= 0;
         MISO <= 0;
     end
+    else begin
    case(cs)
-    IDLE:  rx_valid<=0;
+    IDLE: rx_valid<=0;
     CHK_CMD : begin
-         counter_up<=10;
-         counter_down<=8;
+         counter<=10;
     end
     WRITE  : begin 
-        if(counter_up>0) begin
-            rx_data[counter_up-1] <=MOSI;
-        counter_up<=counter_up-1;
+        if(counter>0) begin
+        rx_data[counter-1]<=MOSI;
+        counter<=counter-1;
         end
-        else begin 
+        else begin
             rx_valid<=1;
         end
     end
     READ_ADD : begin 
-           if(counter_up>0) begin
-            rx_data[counter_up-1] <=MOSI;
-        counter_up<=counter_up-1;
+         if(counter>0) begin
+        rx_data[counter-1]<=MOSI;
+        counter<=counter-1;
         end
-        else begin 
+        else begin
             rx_valid<=1;
             ADDRESS_read<=1;
         end
     end
    READ_DATA : begin 
     if (tx_valid) begin
-        rx_valid<=0;
-        if(counter_down>0) begin
-       MISO<=tx_data[counter_down-1];
-        counter_down<=counter_down-1;
+        if(counter>0) begin
+            MISO<=tx_data[counter-1];
+             counter<=counter-1;
         end
-        else begin 
-          ADDRESS_read<=0;
-        end  
+         else begin
+                ADDRESS_read <= 0;
+                rx_valid<=0;
+         end
     end
     else begin 
-           if(counter_up>0) begin
-            rx_data[counter_up-1] <=MOSI;
-        counter_up<=counter_up-1;
-        end
-        else begin 
-            rx_valid<=1;
-        end
+       if(counter>0) begin
+        rx_data[counter-1]<=MOSI;
+        counter<=counter-1;
+       end
+       else begin
+        rx_valid<=1;
+        counter<=9;
+       end
     end
-end
-endcase
+   end
+
+   endcase
+    end
 end
 endmodule
