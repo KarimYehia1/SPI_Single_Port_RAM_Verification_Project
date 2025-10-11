@@ -11,12 +11,12 @@ class spi_slave_coverage extends uvm_component;
   spi_slave_seq_item seq_item_cov;
   covergroup covcode ;
   reciver_data: coverpoint seq_item_cov.rx_data[9:8];
-  ss_n_allcases : coverpoint seq_item_cov.SS_n iff (seq_item_cov.array_rand[0:2] inside {3'b000,3'b001,3'b110})
+  ss_n_allcases : coverpoint seq_item_cov.SS_n 
   {
     bins trans_all_cases= (1 => 0[*13] =>1) ;
    
   }
-  ss_n_read_data : coverpoint seq_item_cov.SS_n  iff ( seq_item_cov.array_rand[0:2] == 3'b111)
+  ss_n_read_data : coverpoint seq_item_cov.SS_n  
   {
      bins trans_read= (1 => 0[*23] =>1) ;
   }

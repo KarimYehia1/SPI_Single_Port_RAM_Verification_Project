@@ -9,11 +9,10 @@ class spi_slave_seq_item extends uvm_sequence_item;
  logic rx_valid, MISO,MISO_ref ,rx_valid_ref;
   logic MOSI;
  rand logic SS_n;
- logic SS_n_prev;
  rand logic rst_n;
  rand logic tx_valid;
- randc bit[0:10] array_rand;
- current_st cs,ns;
+ rand bit[0:10] array_rand;
+
   function new(string name= "spi_slave_seq_item");
      super.new(name);
  endfunction
@@ -40,9 +39,10 @@ class spi_slave_seq_item extends uvm_sequence_item;
           SS_n==1;
         }
     }
+   
     constraint trans_ram
     {
-            if (array_rand[0:2] == 3'b111) 
+            if (array_rand[0:2] == 3'b111 ) 
               {
                 tx_valid==1;
               } 
@@ -50,12 +50,13 @@ class spi_slave_seq_item extends uvm_sequence_item;
                 {
                   tx_valid==0;
                 }
-    }
+    } 
     constraint mosi_in
     {
       if (SS_n_prev && !SS_n)
       array_rand[0:2] inside {3'b000, 3'b001, 3'b110 , 3'b111};
     }
+    
     
     function void post_randomize;
       SS_n_prev=SS_n;
