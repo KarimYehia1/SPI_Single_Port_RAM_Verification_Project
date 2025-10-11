@@ -29,7 +29,7 @@ class ram_scoreboard extends uvm_scoreboard;
         super.run_phase(phase);
         forever begin
             sb_fifo.get(item);
-            if(item.dout != item.dout_ref) begin
+            if(item.dout != item.dout_ref || item.tx_valid != item.tx_valid_ref) begin
                 $display("Error, transation sent by dut is %s while dout_ref = %b", item.convert2string_stimulus(), item.dout_ref);
                 error_count++;
             end
