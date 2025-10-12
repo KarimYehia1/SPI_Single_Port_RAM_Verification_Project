@@ -7,4 +7,5 @@ add wave -position insertpoint  \
 sim:/uvm_root/uvm_test_top/env/sb/correct_count \
 sim:/uvm_root/uvm_test_top/env/sb/error_count
 add wave /ram_top/DUT/sva_inst/rst_n_assertion
+coverage save ram_top.ucdb -onexit
 run -all
