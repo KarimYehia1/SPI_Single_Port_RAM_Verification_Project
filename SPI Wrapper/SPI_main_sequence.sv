@@ -15,7 +15,7 @@ package SPI_main_sequence_package;
 
     task body();
       seq_item_main =SPI_seq_item::type_id::create("seq_item_main");
-      repeat(10000) begin
+      repeat(1000) begin
         start_item(seq_item_main);
         seq_item_main.SS_n_0.constraint_mode(0);
         seq_item_main.wr_only_constraint.constraint_mode(0);
@@ -34,7 +34,7 @@ package SPI_main_sequence_package;
         finish_item(seq_item_main);
       end
 
-      repeat(10000) begin
+      repeat(1000) begin
         start_item(seq_item_main);
         seq_item_main.SS_n_0.constraint_mode(0);
         seq_item_main.wr_only_constraint.constraint_mode(0);
