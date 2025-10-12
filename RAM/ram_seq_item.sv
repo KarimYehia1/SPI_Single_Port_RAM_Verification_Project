@@ -18,18 +18,22 @@ class ram_seq_item extends uvm_sequence_item;
 
     constraint rst_rx_constraint
     {
+        // RAM_RESET
         rst_n dist {0:= 2, 1:= 98};
+        // RAM_RX_VALID
         rx_valid dist {0:= 2, 1:= 98};
     }
 
     constraint wr_only_constraint
     {
         // Always constrain to write operations (address or data)
+        // RAM_WR
         din[9:8] inside {WR_ADDR, WR_DATA};
     }
 
     constraint rd_only_constraint
     { 
+            // RAM_RD
             if(old_operation == RD_ADDR)
             {
                 din[9:8] == RD_DATA;
