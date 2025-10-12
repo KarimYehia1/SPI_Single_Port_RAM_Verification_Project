@@ -16,10 +16,12 @@ class spi_slave_seq_item extends uvm_sequence_item;
   function new(string name= "spi_slave_seq_item");
      super.new(name);
  endfunction
+   //reset
     constraint reset 
     {
       rst_n  dist { 1:/98 , 0:/2};
     }
+    //SS_n for all cases
     constraint serial_comm_all_cases
     {
       if(  array_rand[0:2] inside {3'b000, 3'b001, 3'b110} && counter_allcases%14 !=0) {
@@ -30,6 +32,7 @@ class spi_slave_seq_item extends uvm_sequence_item;
           SS_n==1;
         }
     }
+    //SS_n for read data
     constraint serial_comm_read_data{
      if(  array_rand[0:2] inside {3'b111} && counter_read%24 !=0) {
          SS_n==0;
@@ -39,10 +42,10 @@ class spi_slave_seq_item extends uvm_sequence_item;
           SS_n==1;
         }
     }
-   
+    //tx_valid for read data
     constraint trans_ram
     {
-            if (array_rand[0:2] == 3'b111 ) 
+            if (array_rand[0:2] == 3'b111  && counter_read==23) 
               {
                 tx_valid==1;
               } 
@@ -51,6 +54,7 @@ class spi_slave_seq_item extends uvm_sequence_item;
                   tx_valid==0;
                 }
     } 
+    // array_rand for all cases
     constraint mosi_in
     {
       if (SS_n_prev && !SS_n)

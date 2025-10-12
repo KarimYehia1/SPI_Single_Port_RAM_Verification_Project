@@ -116,7 +116,7 @@ always @(posedge ss_if.clk) begin
                     end
                     else begin
                         ss_if.rx_valid <= 1;
-                        counter <= 8;
+                        counter <= 9;
                     end
                 end
             end
