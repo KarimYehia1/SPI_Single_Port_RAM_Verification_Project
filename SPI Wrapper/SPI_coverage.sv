@@ -24,17 +24,17 @@ package SPI_coverage_pkg;
         covergroup cvr_grp_SPI_SLAVE;
             reciver_data: coverpoint seq_item_SPI_SLAVE.rx_data[9:8];
 
-            ss_n_allcases : coverpoint seq_item_SPI_SLAVE.SS_n {
+            SS_n_allcases : coverpoint seq_item_SPI_SLAVE.SS_n {
                 bins trans_all_cases= (1 => 0[*13] =>1);
             }
 
-            ss_n_read_data : coverpoint seq_item_SPI_SLAVE.SS_n {
+            SS_n_read_data : coverpoint seq_item_SPI_SLAVE.SS_n {
                 bins trans_read= (1 => 0[*23] =>1) ;
             }
 
-            ss_n : coverpoint seq_item_SPI_SLAVE.SS_n {bins ss_n_val={0};}
+            SS_n : coverpoint seq_item_SPI_SLAVE.SS_n {bins SS_n_val={0};}
 
-            // bins trans_read_data =(1=>0[*23] =>1) iff(seq_item_SPI_SLAVE.rx_data[9:8]==2'b11);bins ss_n_val={0};
+            // bins trans_read_data =(1=>0[*23] =>1) iff(seq_item_SPI_SLAVE.rx_data[9:8]==2'b11);bins SS_n_val={0};
             mosi: coverpoint seq_item_SPI_SLAVE.MOSI {
                 bins write_add = (0=>0=>0);
                 bins write_data = (0=>0=>1);
@@ -44,10 +44,10 @@ package SPI_coverage_pkg;
                 bins mosi_val_high={1};
             }
 
-            cross_mosi_ss_n : cross mosi,ss_n {
+            cross_mosi_SS_n : cross mosi,SS_n {
                 option.cross_auto_bin_max=0;
-                bins ss_n_low_mosi_low = binsof(ss_n.ss_n_val) && binsof(mosi.mosi_val_low);
-                bins ss_n_low_mosi_high = binsof(ss_n.ss_n_val)  && binsof(mosi.mosi_val_high);
+                bins SS_n_low_mosi_low = binsof(SS_n.SS_n_val) && binsof(mosi.mosi_val_low);
+                bins SS_n_low_mosi_high = binsof(SS_n.SS_n_val)  && binsof(mosi.mosi_val_high);
             }
 
         endgroup

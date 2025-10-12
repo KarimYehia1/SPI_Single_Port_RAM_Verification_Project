@@ -15,7 +15,7 @@ package SPI_rd_only_sequence_pkg;
 
     task body();
         seq_item = SPI_seq_item::type_id::create("seq_item");
-        repeat(1000) begin
+        repeat(10000) begin
             start_item(seq_item);
             seq_item.serial_comm_all_cases.constraint_mode(0);
             seq_item.serial_comm_read_data.constraint_mode(0);

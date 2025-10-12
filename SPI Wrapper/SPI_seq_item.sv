@@ -21,6 +21,9 @@ package SPI_seq_item_pkg;
         //RESET
         constraint reset {rst_n dist {0:/2, 1:/98};}
 
+        //SS_n_0
+        constraint SS_n_0 {SS_n == 0;}
+
         //SS_n_13_cycles
         constraint serial_comm_all_cases {
             if (array_rand[0:2] inside {WR_ADDR, WR_DATA, RD_ADDR} && counter_allcases % 14 != 0)
