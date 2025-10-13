@@ -131,7 +131,7 @@ end
 // counter not equal 0 at reset 
 // rx_valid in read data 
 //counter in read_data
-// `ifdef SIM 
+`ifdef SIM 
 
 sequence write_add_seq;
   (SS_n==1) ##1 (SS_n==0) ##1 (MOSI == 0)[*3];
@@ -200,5 +200,5 @@ endproperty
             cover property (chck_state_read_add_to_idle);
             cover property (chck_state_read_datato_idle);                   
 
-// `endif 
+`endif 
 endmodule
