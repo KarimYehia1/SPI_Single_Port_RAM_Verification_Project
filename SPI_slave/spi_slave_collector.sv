@@ -18,27 +18,26 @@ class spi_slave_coverage extends uvm_component;
   }
   ss_n_read_data : coverpoint seq_item_cov.SS_n  
   {
-     bins trans_read= (1 => 0[*23] =>1) ;
+       bins trans_read= (1 => 0[*23] =>1) ;
   }
   ss_n : coverpoint seq_item_cov.SS_n
   {
     bins ss_n_val={0};
   }
-  // bins trans_read_data =(1=>0[*23] =>1) iff(seq_item_cov.rx_data[9:8]==2'b11);bins ss_n_val={0};
   mosi: coverpoint seq_item_cov.MOSI 
   {
     bins write_add = (0=>0=>0);
     bins write_data = (0=>0=>1);
     bins read_add = (1=>1=>0);
     bins read_data =(1=>1=>1);
-    bins mosi_val_low={0};
-     bins mosi_val_high={1};
   }
   cross_mosi_ss_n : cross mosi,ss_n
   {
      option.cross_auto_bin_max=0;
-     bins ss_n_low_mosi_low = binsof(ss_n.ss_n_val) && binsof(mosi.mosi_val_low);
-     bins ss_n_low_mosi_high = binsof(ss_n.ss_n_val)  && binsof(mosi.mosi_val_high);
+     bins ss_n_low_write_add = binsof(ss_n.ss_n_val)  && binsof(mosi.write_add);
+     bins ss_n_low_write_data = binsof(ss_n.ss_n_val)  && binsof(mosi.write_data);
+     bins ss_n_low_read_add = binsof(ss_n.ss_n_val)  && binsof(mosi.read_add);
+     bins ss_n_low_read_data = binsof(ss_n.ss_n_val)  && binsof(mosi.read_data);
   }
 
   endgroup
