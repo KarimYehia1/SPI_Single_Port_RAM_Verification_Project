@@ -34,9 +34,6 @@ package SPI_wr_rd_sequence_pkg;
                 seq_item.array_rand.rand_mode(0);
             end
             assert (seq_item.randomize());
-            //Increment counters, the function itself checks if it is valid to increment or not
-            seq_item.update_counter_allcases;
-            seq_item.update_counter_read;
             finish_item(seq_item);
         end
 

@@ -79,24 +79,20 @@ package SPI_seq_item_pkg;
             // update operation tracking
             old_operation = op_e'(array_rand[0:2]);
             SS_n_prev = SS_n;
-        endfunction
 
-
-        function void update_counter_allcases;
-            //Only increment counter when valid
+            //Only increment counter_allcases counter when valid
             if (array_rand[0:2] inside {WR_ADDR, WR_DATA, RD_ADDR})
                 counter_allcases++;
             if (counter_allcases == 13)
                 counter_allcases = 0;
-        endfunction
 
-        function void update_counter_read;
-            //Only increment counter when valid
+            //Only counter_read increment counter when valid
             if (array_rand[0:2] inside {RD_DATA})
                 counter_read++;
             if (counter_read == 23)
                 counter_read = 0;
-        endfunction 
+                    
+        endfunction
 
         function new(string name = "SPI_seq_item");
             super.new(name);

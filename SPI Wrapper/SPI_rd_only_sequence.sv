@@ -34,8 +34,6 @@ package SPI_rd_only_sequence_pkg;
                 seq_item.array_rand.rand_mode(0);
             end
             assert (seq_item.randomize());
-            seq_item.update_counter_allcases;
-            seq_item.update_counter_read;
             finish_item(seq_item);
         end
 
