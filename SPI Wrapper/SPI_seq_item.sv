@@ -86,12 +86,12 @@ package SPI_seq_item_pkg;
             if (counter_allcases == 13)
                 counter_allcases = 0;
 
-            //Only counter_read increment counter when valid
+            //Only increment counter_read counter when valid
             if (array_rand[0:2] inside {RD_DATA})
                 counter_read++;
             if (counter_read == 23)
                 counter_read = 0;
-                    
+
         endfunction
 
         function new(string name = "SPI_seq_item");
