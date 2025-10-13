@@ -29,7 +29,7 @@ package SPI_coverage_pkg;
             }
 
             SS_n_read_data : coverpoint seq_item_SPI_SLAVE.SS_n {
-                bins trans_read= (1 => 0[*23] =>1) ;
+                bins trans_read= (1 => 0[*22] => 1) ;
             }
 
             SS_n : coverpoint seq_item_SPI_SLAVE.SS_n {bins SS_n_val={0};}
@@ -55,9 +55,10 @@ package SPI_coverage_pkg;
         covergroup cvr_grp_RAM;
             transaction_ordering_cp: coverpoint seq_item_RAM.din[9:8] {
                 bins all_values = {[0:3]};
-                bins wr_data_after_wr_address = (0 => 1);
-                bins rd_data_after_rd_address = (2 => 3);
-                bins full_transition = (0 => 1 => 2 => 3);
+                // Bins for specific transitions (They take many cycles to occur, as we have long operations)
+                bins wr_data_after_wr_address = (0[*14] => 1[*10]);
+                bins rd_data_after_rd_address = (2[*13] => 3[*10]);
+                bins full_transition = (0[*14] => 1[*12] => 3 => 2[*13] => 3[*10]);
             }
 
             rx_valid_cp: coverpoint seq_item_RAM.rx_valid {
@@ -68,6 +69,7 @@ package SPI_coverage_pkg;
                 bins tx_high = {1};
             }
 
+            //When the sequence bins are hit, cross coverage checks if they hit while rx_valid is high at the same time
             cross_op_rx_cp: cross transaction_ordering_cp, rx_valid_cp;
 
             cross_op_tx_cp: cross transaction_ordering_cp, tx_valid_cp {

@@ -14,7 +14,7 @@ endsequence
 // then MISO must stay stable while SS_n is low.
 property MISO_STABLE_NOT_READ;
     @(posedge clk) disable iff (!rst_n)
-        $fell(SS_n) |-> 
+        $fell(SS_n) |=> 
             (not READ_DATA_SEQUENCE ##1 ($stable(MISO) throughout (!SS_n)) );
 endproperty
 

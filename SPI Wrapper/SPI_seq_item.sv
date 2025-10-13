@@ -16,34 +16,21 @@ package SPI_seq_item_pkg;
         rand bit [0:10] array_rand;
         //Saving the last operation
         op_e old_operation;
+        //array index to drive MOSI bit by bit
+        int bit_index = 0; 
+
 
         //Constraints
         //RESET
         constraint reset {rst_n dist {0:/2, 1:/98};}
 
-        //SS_n_0
-        constraint SS_n_0 {SS_n == 0;}
-
-        //SS_n_13_cycles
-        constraint serial_comm_all_cases {
-            if (array_rand[0:2] inside {WR_ADDR, WR_DATA, RD_ADDR} && counter_allcases % 14 != 0)
+        //SS_n_high
+        constraint SS_n_high {
+            if ((array_rand[0:2] inside {WR_ADDR, WR_DATA, RD_ADDR} && counter_allcases % 13 != 0)     //SS_n = 1 every 13 cycles
+             || (array_rand[0:2] inside {RD_DATA} && counter_read % 23 != 0))                          //SS_n = 1 every 23 cycles
                 SS_n==0;
             else 
                 SS_n==1;
-        }
-
-        //SS_n_23_cycles
-        constraint serial_comm_read_data {
-            if(array_rand[0:2] inside {RD_DATA} && counter_read % 24 != 0)
-                SS_n==0;
-            else 
-                SS_n==1;
-        }
-   
-        //MOSI
-        constraint mosi_in {
-        if (SS_n_prev && !SS_n)
-            array_rand[0:2] inside {WR_ADDR, WR_DATA, RD_ADDR , RD_DATA};
         }
 
         //Write only
@@ -77,21 +64,37 @@ package SPI_seq_item_pkg;
 
 
         function void post_randomize;
+            // Start of a new frame when SS_n goes low
+            if (SS_n_prev && !SS_n)
+                bit_index = -1; // will be incremented to 0 in the next step (don't drive MOSI in the same cycle SS_n goes low(IDLE -> CHK_CMD))
+
+            // While SS_n is low -> drive MOSI bit-by-bit
+            if (!SS_n) begin
+                MOSI = array_rand[bit_index];
+                bit_index++;
+                if (bit_index > 10)
+                    bit_index = 0; // wrap after full frame
+            end
+
+            // update operation tracking
             old_operation = op_e'(array_rand[0:2]);
             SS_n_prev = SS_n;
-            if(counter_allcases < 11)
-                MOSI = array_rand[counter_allcases];
         endfunction
 
-        function update_counter_allcases;
-            counter_allcases++;
-            if (counter_allcases == 14)
+
+        function void update_counter_allcases;
+            //Only increment counter when valid
+            if (array_rand[0:2] inside {WR_ADDR, WR_DATA, RD_ADDR})
+                counter_allcases++;
+            if (counter_allcases == 13)
                 counter_allcases = 0;
         endfunction
 
-        function update_counter_read;
-            counter_read++;
-            if (counter_read == 24)
+        function void update_counter_read;
+            //Only increment counter when valid
+            if (array_rand[0:2] inside {RD_DATA})
+                counter_read++;
+            if (counter_read == 23)
                 counter_read = 0;
         endfunction 
 

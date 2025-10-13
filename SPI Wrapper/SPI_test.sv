@@ -5,7 +5,6 @@ package SPI_test_pkg;
   import SPI_env_pkg::*;
   import SPI_sequencer_pkg::*;
   import SPI_reset_sequence_pkg::*;
-  import SPI_main_sequence_package::*;
   import SPI_wr_only_sequence_pkg::*;
   import SPI_rd_only_sequence_pkg::*;
   import SPI_wr_rd_sequence_pkg::*;
@@ -16,7 +15,6 @@ package SPI_test_pkg;
     SPI_config SPI_cfg, SPI_SLAVE_cfg, RAM_cfg;
     SPI_env env;
     SPI_reset_sequence rst_seq;
-    SPI_main_sequence main_seq;  
     SPI_wr_only_sequence wr_only_seq;
     SPI_rd_only_sequence rd_only_seq;
     SPI_wr_rd_sequence wr_rd_seq; 
@@ -32,7 +30,6 @@ package SPI_test_pkg;
       SPI_SLAVE_cfg = SPI_config::type_id::create("SPI_SLAVE_cfg");
       RAM_cfg = SPI_config::type_id::create("RAM_cfg");
       rst_seq = SPI_reset_sequence::type_id::create("rst_seq");
-      main_seq = SPI_main_sequence::type_id::create("main_seq");
       wr_only_seq = SPI_wr_only_sequence::type_id::create("wr_only_seq");
       rd_only_seq = SPI_rd_only_sequence::type_id::create("rd_only_seq");
       wr_rd_seq = SPI_wr_rd_sequence::type_id::create("wr_rd_seq");
@@ -63,12 +60,7 @@ package SPI_test_pkg;
       `uvm_info("Run_Phase", "Reset Sequence Start.", UVM_MEDIUM)
       rst_seq.start(env.agt.sqr);
       `uvm_info("Run_Phase", "Reset Sequence End.", UVM_MEDIUM)
-
-      //Main sequence
-      `uvm_info("Run_Phase", "Main Sequence Start.", UVM_MEDIUM)
-      main_seq.start(env.agt.sqr);
-      `uvm_info("Run_Phase", "Main Sequence End.", UVM_MEDIUM)
-
+      
       //Write only sequence
       `uvm_info("Run_Phase", "Write Only Sequence Start.", UVM_MEDIUM)
       wr_only_seq.start(env.agt.sqr);

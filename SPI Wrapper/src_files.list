@@ -17,7 +17,6 @@ RAM_seq_item.sv
 SPI_SLAVE_seq_item.sv
 SPI_seq_item.sv
 SPI_reset_sequence.sv
-SPI_main_sequence.sv
 SPI_wr_only_sequence.sv
 SPI_rd_only_sequence.sv
 SPI_wr_rd_sequence.sv
