@@ -15,17 +15,31 @@ package SPI_wr_rd_sequence_pkg;
 
     task body();
         seq_item = SPI_seq_item::type_id::create("seq_item");
-        repeat(1000) begin
+        //Write and Read
+        repeat(5000) begin
             start_item(seq_item);
-            seq_item.serial_comm_all_cases.constraint_mode(0);
-            seq_item.serial_comm_read_data.constraint_mode(0);
-            seq_item.mosi_in.constraint_mode(0);
-            seq_item.wr_only_constraint.constraint_mode(0);
-            seq_item.rd_only_constraint.constraint_mode(0);
-            seq_item.rd_wr_constraint.constraint_mode(1);
-            assert(seq_item.randomize());
+            //At the beginning of the operation, enable the read/write sequence and randomization
+            if(counter_allcases == 0 && (seq_item.array_rand[0:2] inside {WR_ADDR, WR_DATA, RD_ADDR})
+            || counter_read == 0 && (seq_item.array_rand[0:2] inside {RD_DATA})) begin
+                seq_item.wr_only_constraint.constraint_mode(0);
+                seq_item.rd_only_constraint.constraint_mode(0);
+                seq_item.rd_wr_constraint.constraint_mode(1);
+                seq_item.array_rand.rand_mode(1);
+            end
+            else begin
+                //Disable all constraints and randomization because we are already in an operation
+                seq_item.wr_only_constraint.constraint_mode(0);
+                seq_item.rd_only_constraint.constraint_mode(0);
+                seq_item.rd_wr_constraint.constraint_mode(0);
+                seq_item.array_rand.rand_mode(0);
+            end
+            assert (seq_item.randomize());
+            //Increment counters, the function itself checks if it is valid to increment or not
+            seq_item.update_counter_allcases;
+            seq_item.update_counter_read;
             finish_item(seq_item);
         end
+
     endtask
 
 endclass
