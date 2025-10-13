@@ -40,15 +40,17 @@ package SPI_coverage_pkg;
                 bins write_data = (0=>0=>1);
                 bins read_add = (1=>1=>0);
                 bins read_data =(1=>1=>1);
+                bins mosi_val_low={0};
+                bins mosi_val_high={1};
             }
 
-           cross_mosi_ss_n : cross mosi,SS_n 
+           cross_mosi_SS_n : cross mosi,SS_n
                 {
                     option.cross_auto_bin_max=0;
-                    bins ss_n_low_write_add = binsof(SS_n.SS_n_val)  && binsof(mosi.write_add);
-                    bins ss_n_low_write_data = binsof(SS_n.SS_n_val)  && binsof(mosi.write_data);
-                    bins ss_n_low_read_add = binsof(SS_n.SS_n_val)  && binsof(mosi.read_add);
-                    bins ss_n_low_read_data = binsof(SS_n.SS_n_val)  && binsof(mosi.read_data);
+                    bins SS_n_low_write_add = binsof(SS_n.SS_n_val)  && binsof(mosi.write_add);
+                    bins SS_n_low_write_data = binsof(SS_n.SS_n_val)  && binsof(mosi.write_data);
+                    bins SS_n_low_read_add = binsof(SS_n.SS_n_val)  && binsof(mosi.read_add);
+                    bins SS_n_low_read_data = binsof(SS_n.SS_n_val)  && binsof(mosi.read_data);
                 }
 
 

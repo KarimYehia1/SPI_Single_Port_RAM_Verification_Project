@@ -808,7 +808,7 @@ Toggle Coverage      =     100.00% (50 of 50 bins)
 Branch Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Branches                        32        32         0   100.00%
+    Branches                        42        39         3    92.85%
 
 ================================Branch Details================================
 
@@ -851,6 +851,14 @@ Branch totals: 2 hits of 2 branches = 100.00%
     35              1                        586         else begin
 Branch totals: 2 hits of 2 branches = 100.00%
 
+------------------------------------CASE Branch------------------------------------
+    36                                       586     Count coming in to CASE
+    37              1                        396             1'b0 : ns=READ_ADD;
+    38              1                        190             1'b1: ns=READ_DATA;
+    39              1                    ***0***             1'bx: ns=READ_ADD;
+                                         ***0***     All False Count
+Branch totals: 2 hits of 4 branches = 50.00%
+
 ------------------------------------IF Branch------------------------------------
     45                                      3737     Count coming in to IF
     45              1                       3195          if(SS_n==0 )
@@ -874,6 +882,16 @@ Branch totals: 2 hits of 2 branches = 100.00%
     69              1                        295           if (~rst_n) begin 
     75              1                      14523         else begin
 Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    76                                     14523     Count coming in to CASE
+    77              1                       1239         IDLE: rx_valid<=0;
+    78              1                       1208         CHK_CMD : begin
+    81              1                       6047         WRITE  : begin 
+    90              1                       3060         READ_ADD : begin 
+    100             1                       2969        READ_DATA : begin 
+                                         ***0***     All False Count
+Branch totals: 5 hits of 6 branches = 83.33%
 
 ------------------------------------IF Branch------------------------------------
     82                                      6047     Count coming in to IF
@@ -1021,7 +1039,7 @@ Line            Trans_ID           Hit_count          Transition
 Statement Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Statements                      38        38         0   100.00%
+    Statements                      39        38         1    97.43%
 
 ================================Statement Details================================
 
@@ -1068,7 +1086,7 @@ Statement Coverage for instance /top/DUT_GOLDEN/DUT_SPI_GOLDEN --
     36                                                       casex(ADDRESS_read)
     37              1                        396             1'b0 : ns=READ_ADD;
     38              1                        190             1'b1: ns=READ_DATA;
-    39                                                       1'bx: ns=READ_ADD;
+    39              1                    ***0***             1'bx: ns=READ_ADD;
     40                                                       endcase
     41                                                   end
     42                                                  end
@@ -1810,7 +1828,7 @@ Toggle Coverage      =     100.00% (72 of 72 bins)
 Branch Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Branches                        32        32         0   100.00%
+    Branches                        42        39         3    92.85%
 
 ================================Branch Details================================
 
@@ -1853,6 +1871,14 @@ Branch totals: 2 hits of 2 branches = 100.00%
     35              1                        586         else begin
 Branch totals: 2 hits of 2 branches = 100.00%
 
+------------------------------------CASE Branch------------------------------------
+    36                                       586     Count coming in to CASE
+    37              1                        396             1'b0 : ns=READ_ADD;
+    38              1                        190             1'b1: ns=READ_DATA;
+    39              1                    ***0***             1'bx: ns=READ_ADD;
+                                         ***0***     All False Count
+Branch totals: 2 hits of 4 branches = 50.00%
+
 ------------------------------------IF Branch------------------------------------
     45                                      3737     Count coming in to IF
     45              1                       3195          if(SS_n==0 )
@@ -1876,6 +1902,16 @@ Branch totals: 2 hits of 2 branches = 100.00%
     69              1                        295           if (~rst_n) begin 
     75              1                      14523         else begin
 Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    76                                     14523     Count coming in to CASE
+    77              1                       1239         IDLE: rx_valid<=0;
+    78              1                       1208         CHK_CMD : begin
+    81              1                       6047         WRITE  : begin 
+    90              1                       3060         READ_ADD : begin 
+    100             1                       2969        READ_DATA : begin 
+                                         ***0***     All False Count
+Branch totals: 5 hits of 6 branches = 83.33%
 
 ------------------------------------IF Branch------------------------------------
     82                                      6047     Count coming in to IF
@@ -2023,7 +2059,7 @@ Line            Trans_ID           Hit_count          Transition
 Statement Coverage:
     Enabled Coverage              Bins      Hits    Misses  Coverage
     ----------------              ----      ----    ------  --------
-    Statements                      38        38         0   100.00%
+    Statements                      39        38         1    97.43%
 
 ================================Statement Details================================
 
@@ -2070,7 +2106,7 @@ Statement Coverage for instance /top/DUT_SPI_SLAVE_GOLDEN --
     36                                                       casex(ADDRESS_read)
     37              1                        396             1'b0 : ns=READ_ADD;
     38              1                        190             1'b1: ns=READ_DATA;
-    39                                                       1'bx: ns=READ_ADD;
+    39              1                    ***0***             1'bx: ns=READ_ADD;
     40                                                       endcase
     41                                                   end
     42                                                  end
@@ -3841,15 +3877,15 @@ Statement Coverage for instance /spi_slave_seq_item_package --
 Covergroup Coverage:
     Covergroups                      2        na        na   100.00%
         Coverpoints/Crosses         11        na        na        na
-            Covergroup Bins         26        26         0   100.00%
+            Covergroup Bins         28        28         0   100.00%
 ----------------------------------------------------------------------------------------------------------
 Covergroup                                             Metric       Goal       Bins    Status               
                                                                                                          
 ----------------------------------------------------------------------------------------------------------
  TYPE /SPI_coverage_pkg/SPI_coverage/cvr_grp_SPI_SLAVE 
                                                       100.00%        100          -    Covered              
-    covered/total bins:                                    15         15          -                      
-    missing/total bins:                                     0         15          -                      
+    covered/total bins:                                    17         17          -                      
+    missing/total bins:                                     0         17          -                      
     % Hit:                                            100.00%        100          -                      
     Coverpoint reciver_data                           100.00%        100          -    Covered              
         covered/total bins:                                 4          4          -                      
@@ -3872,13 +3908,13 @@ Covergroup                                             Metric       Goal       B
         missing/total bins:                                 0          6          -                      
         % Hit:                                        100.00%        100          -                      
     Cross cross_mosi_SS_n                             100.00%        100          -    Covered              
-        covered/total bins:                                 2          2          -                      
-        missing/total bins:                                 0          2          -                      
+        covered/total bins:                                 4          4          -                      
+        missing/total bins:                                 0          4          -                      
         % Hit:                                        100.00%        100          -                      
  Covergroup instance \/SPI_coverage_pkg::SPI_coverage::cvr_grp_SPI_SLAVE  
                                                       100.00%        100          -    Covered              
-    covered/total bins:                                    15         15          -                      
-    missing/total bins:                                     0         15          -                      
+    covered/total bins:                                    17         17          -                      
+    missing/total bins:                                     0         17          -                      
     % Hit:                                            100.00%        100          -                      
     Coverpoint reciver_data                           100.00%        100          -    Covered              
         covered/total bins:                                 4          4          -                      
@@ -3914,12 +3950,14 @@ Covergroup                                             Metric       Goal       B
         bin mosi_val_low                                 7957          1          -    Covered              
         bin mosi_val_high                                7044          1          -    Covered              
     Cross cross_mosi_SS_n                             100.00%        100          -    Covered              
-        covered/total bins:                                 2          2          -                      
-        missing/total bins:                                 0          2          -                      
+        covered/total bins:                                 4          4          -                      
+        missing/total bins:                                 0          4          -                      
         % Hit:                                        100.00%        100          -                      
         Auto, Default and User Defined Bins:
-            bin SS_n_low_mosi_low                        7427          1          -    Covered              
-            bin SS_n_low_mosi_high                       6576          1          -    Covered              
+            bin SS_n_low_write_add                       2647          1          -    Covered              
+            bin SS_n_low_write_data                      1739          1          -    Covered              
+            bin SS_n_low_read_add                        1687          1          -    Covered              
+            bin SS_n_low_read_data                       1769          1          -    Covered              
  TYPE /SPI_coverage_pkg/SPI_coverage/cvr_grp_RAM      100.00%        100          -    Covered              
     covered/total bins:                                    11         11          -                      
     missing/total bins:                                     0         11          -                      
@@ -4042,76 +4080,80 @@ Statement Coverage for instance /SPI_coverage_pkg --
     44                                                               bins mosi_val_high={1};
     45                                                           }
     46                                               
-    47                                                           cross_mosi_SS_n : cross mosi,SS_n {
-    48                                                               option.cross_auto_bin_max=0;
-    49                                                               bins SS_n_low_mosi_low = binsof(SS_n.SS_n_val) && binsof(mosi.mosi_val_low);
-    50                                                               bins SS_n_low_mosi_high = binsof(SS_n.SS_n_val)  && binsof(mosi.mosi_val_high);
-    51                                                           }
-    52                                               
-    53                                                       endgroup
-    54                                               
-    55                                                       covergroup cvr_grp_RAM;
-    56                                                           transaction_ordering_cp: coverpoint seq_item_RAM.din[9:8] {
-    57                                                               bins all_values = {[0:3]};
-    58                                                               // Bins for specific transitions (They take many cycles to occur, as we have long operations)
-    59                                                               bins wr_data_after_wr_address = (0[*14] => 1[*10]);
-    60                                                               bins rd_data_after_rd_address = (2[*13] => 3[*10]);
-    61                                                               bins full_transition = (0[*14] => 1[*12] => 3 => 2[*13] => 3[*10]);
-    62                                                           }
-    63                                               
-    64                                                           rx_valid_cp: coverpoint seq_item_RAM.rx_valid {
-    65                                                               bins rx_high = {1};
+    47                                                          cross_mosi_SS_n : cross mosi,SS_n
+    48                                                               {
+    49                                                                   option.cross_auto_bin_max=0;
+    50                                                                   bins SS_n_low_write_add = binsof(SS_n.SS_n_val)  && binsof(mosi.write_add);
+    51                                                                   bins SS_n_low_write_data = binsof(SS_n.SS_n_val)  && binsof(mosi.write_data);
+    52                                                                   bins SS_n_low_read_add = binsof(SS_n.SS_n_val)  && binsof(mosi.read_add);
+    53                                                                   bins SS_n_low_read_data = binsof(SS_n.SS_n_val)  && binsof(mosi.read_data);
+    54                                                               }
+    55                                               
+    56                                               
+    57                                                       endgroup
+    58                                               
+    59                                                       covergroup cvr_grp_RAM;
+    60                                                           transaction_ordering_cp: coverpoint seq_item_RAM.din[9:8] {
+    61                                                               bins all_values = {[0:3]};
+    62                                                               // Bins for specific transitions (They take many cycles to occur, as we have long operations)
+    63                                                               bins wr_data_after_wr_address = (0[*14] => 1[*10]);
+    64                                                               bins rd_data_after_rd_address = (2[*13] => 3[*10]);
+    65                                                               bins full_transition = (0[*14] => 1[*12] => 3 => 2[*13] => 3[*10]);
     66                                                           }
     67                                               
-    68                                                           tx_valid_cp: coverpoint seq_item_RAM.tx_valid {
-    69                                                               bins tx_high = {1};
+    68                                                           rx_valid_cp: coverpoint seq_item_RAM.rx_valid {
+    69                                                               bins rx_high = {1};
     70                                                           }
     71                                               
-    72                                                           //When the sequence bins are hit, cross coverage checks if they hit while rx_valid is high at the same time
-    73                                                           cross_op_rx_cp: cross transaction_ordering_cp, rx_valid_cp;
-    74                                               
-    75                                                           cross_op_tx_cp: cross transaction_ordering_cp, tx_valid_cp {
-    76                                                               // Cross bin for read data (3) when tx_valid is high (1)
-    77                                                               bins rd_data_tx_high = binsof(transaction_ordering_cp.all_values) intersect {3} && 
-    78                                                                                      binsof(tx_valid_cp) intersect {1};
-    79                                                               option.cross_auto_bin_max = 0;
-    80                                                           }
-    81                                               
-    82                                                       endgroup
-    83                                               
-    84                                                       function new(string name = "SPI_coverage", uvm_component parent = null);
-    85              1                          1                 super.new(name, parent);
-    86                                                           //Create Covergroups
-    87              1                          1                 cvr_grp_SPI_SLAVE = new();
-    88              1                          1                 cvr_grp_RAM = new();
-    89                                                       endfunction
-    90                                               
-    91                                                       function void build_phase(uvm_phase phase);
-    92              1                          1             super.build_phase(phase);
-    93              1                          1             cov_export_SPI = new("cov_export_SPI", this);
-    94              1                          1             cov_export_SPI_SLAVE = new("cov_export_SPI_SLAVE", this);
-    95              1                          1             cov_export_RAM = new("cov_export_RAM", this);
-    96              1                          1             cov_fifo_SPI = new("cov_fifo_SPI", this);
-    97              1                          1             cov_fifo_SPI_SLAVE = new("cov_fifo_SPI_SLAVE", this);
-    98              1                          1             cov_fifo_RAM = new("cov_fifo_RAM", this);
-    99                                                       endfunction
-    100                                              
-    101                                                      function void connect_phase(uvm_phase phase);
-    102             1                          1                 super.connect_phase(phase);
-    103             1                          1                 cov_export_SPI.connect(cov_fifo_SPI.analysis_export);
-    104             1                          1                 cov_export_SPI_SLAVE.connect(cov_fifo_SPI_SLAVE.analysis_export);
-    105             1                          1                 cov_export_RAM.connect(cov_fifo_RAM.analysis_export);
-    106                                                      endfunction  
-    107                                              
-    108                                                      task run_phase(uvm_phase phase);
-    109             1                          1                 super.run_phase(phase);
-    110             1                          1                 forever begin
-    111             1                      15002                     cov_fifo_SPI.get(seq_item_SPI);
-    112             1                      15001                     cov_fifo_SPI_SLAVE.get(seq_item_SPI_SLAVE);
-    113             1                      15001                     cov_fifo_RAM.get(seq_item_RAM);
-    114                                                              //Covergroups sample
-    115             1                      15001                     cvr_grp_SPI_SLAVE.sample();
-    116             1                      15001                     cvr_grp_RAM.sample();
+    72                                                           tx_valid_cp: coverpoint seq_item_RAM.tx_valid {
+    73                                                               bins tx_high = {1};
+    74                                                           }
+    75                                               
+    76                                                           //When the sequence bins are hit, cross coverage checks if they hit while rx_valid is high at the same time
+    77                                                           cross_op_rx_cp: cross transaction_ordering_cp, rx_valid_cp;
+    78                                               
+    79                                                           cross_op_tx_cp: cross transaction_ordering_cp, tx_valid_cp {
+    80                                                               // Cross bin for read data (3) when tx_valid is high (1)
+    81                                                               bins rd_data_tx_high = binsof(transaction_ordering_cp.all_values) intersect {3} && 
+    82                                                                                      binsof(tx_valid_cp) intersect {1};
+    83                                                               option.cross_auto_bin_max = 0;
+    84                                                           }
+    85                                               
+    86                                                       endgroup
+    87                                               
+    88                                                       function new(string name = "SPI_coverage", uvm_component parent = null);
+    89              1                          1                 super.new(name, parent);
+    90                                                           //Create Covergroups
+    91              1                          1                 cvr_grp_SPI_SLAVE = new();
+    92              1                          1                 cvr_grp_RAM = new();
+    93                                                       endfunction
+    94                                               
+    95                                                       function void build_phase(uvm_phase phase);
+    96              1                          1             super.build_phase(phase);
+    97              1                          1             cov_export_SPI = new("cov_export_SPI", this);
+    98              1                          1             cov_export_SPI_SLAVE = new("cov_export_SPI_SLAVE", this);
+    99              1                          1             cov_export_RAM = new("cov_export_RAM", this);
+    100             1                          1             cov_fifo_SPI = new("cov_fifo_SPI", this);
+    101             1                          1             cov_fifo_SPI_SLAVE = new("cov_fifo_SPI_SLAVE", this);
+    102             1                          1             cov_fifo_RAM = new("cov_fifo_RAM", this);
+    103                                                      endfunction
+    104                                              
+    105                                                      function void connect_phase(uvm_phase phase);
+    106             1                          1                 super.connect_phase(phase);
+    107             1                          1                 cov_export_SPI.connect(cov_fifo_SPI.analysis_export);
+    108             1                          1                 cov_export_SPI_SLAVE.connect(cov_fifo_SPI_SLAVE.analysis_export);
+    109             1                          1                 cov_export_RAM.connect(cov_fifo_RAM.analysis_export);
+    110                                                      endfunction  
+    111                                              
+    112                                                      task run_phase(uvm_phase phase);
+    113             1                          1                 super.run_phase(phase);
+    114             1                          1                 forever begin
+    115             1                      15002                     cov_fifo_SPI.get(seq_item_SPI);
+    116             1                      15001                     cov_fifo_SPI_SLAVE.get(seq_item_SPI_SLAVE);
+    117             1                      15001                     cov_fifo_RAM.get(seq_item_RAM);
+    118                                                              //Covergroups sample
+    119             1                      15001                     cvr_grp_SPI_SLAVE.sample();
+    120             1                      15001                     cvr_grp_RAM.sample();
 
 
 =================================================================================
@@ -5417,8 +5459,8 @@ Covergroup                                             Metric       Goal       B
 ----------------------------------------------------------------------------------------------------------
  TYPE /SPI_coverage_pkg/SPI_coverage/cvr_grp_SPI_SLAVE 
                                                       100.00%        100          -    Covered              
-    covered/total bins:                                    15         15          -                      
-    missing/total bins:                                     0         15          -                      
+    covered/total bins:                                    17         17          -                      
+    missing/total bins:                                     0         17          -                      
     % Hit:                                            100.00%        100          -                      
     Coverpoint reciver_data                           100.00%        100          -    Covered              
         covered/total bins:                                 4          4          -                      
@@ -5441,13 +5483,13 @@ Covergroup                                             Metric       Goal       B
         missing/total bins:                                 0          6          -                      
         % Hit:                                        100.00%        100          -                      
     Cross cross_mosi_SS_n                             100.00%        100          -    Covered              
-        covered/total bins:                                 2          2          -                      
-        missing/total bins:                                 0          2          -                      
+        covered/total bins:                                 4          4          -                      
+        missing/total bins:                                 0          4          -                      
         % Hit:                                        100.00%        100          -                      
  Covergroup instance \/SPI_coverage_pkg::SPI_coverage::cvr_grp_SPI_SLAVE  
                                                       100.00%        100          -    Covered              
-    covered/total bins:                                    15         15          -                      
-    missing/total bins:                                     0         15          -                      
+    covered/total bins:                                    17         17          -                      
+    missing/total bins:                                     0         17          -                      
     % Hit:                                            100.00%        100          -                      
     Coverpoint reciver_data                           100.00%        100          -    Covered              
         covered/total bins:                                 4          4          -                      
@@ -5483,12 +5525,14 @@ Covergroup                                             Metric       Goal       B
         bin mosi_val_low                                 7957          1          -    Covered              
         bin mosi_val_high                                7044          1          -    Covered              
     Cross cross_mosi_SS_n                             100.00%        100          -    Covered              
-        covered/total bins:                                 2          2          -                      
-        missing/total bins:                                 0          2          -                      
+        covered/total bins:                                 4          4          -                      
+        missing/total bins:                                 0          4          -                      
         % Hit:                                        100.00%        100          -                      
         Auto, Default and User Defined Bins:
-            bin SS_n_low_mosi_low                        7427          1          -    Covered              
-            bin SS_n_low_mosi_high                       6576          1          -    Covered              
+            bin SS_n_low_write_add                       2647          1          -    Covered              
+            bin SS_n_low_write_data                      1739          1          -    Covered              
+            bin SS_n_low_read_add                        1687          1          -    Covered              
+            bin SS_n_low_read_data                       1769          1          -    Covered              
  TYPE /SPI_coverage_pkg/SPI_coverage/cvr_grp_RAM      100.00%        100          -    Covered              
     covered/total bins:                                    11         11          -                      
     missing/total bins:                                     0         11          -                      

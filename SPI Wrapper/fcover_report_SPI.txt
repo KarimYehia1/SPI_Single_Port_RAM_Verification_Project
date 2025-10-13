@@ -100,15 +100,15 @@ Name                                     Design Design   Lang File(Line)      Hi
 Covergroup Coverage:
     Covergroups                      2        na        na   100.00%
         Coverpoints/Crosses         11        na        na        na
-            Covergroup Bins         26        26         0   100.00%
+            Covergroup Bins         28        28         0   100.00%
 ----------------------------------------------------------------------------------------------------------
 Covergroup                                             Metric       Goal       Bins    Status               
                                                                                                          
 ----------------------------------------------------------------------------------------------------------
  TYPE /SPI_coverage_pkg/SPI_coverage/cvr_grp_SPI_SLAVE 
                                                       100.00%        100          -    Covered              
-    covered/total bins:                                    15         15          -                      
-    missing/total bins:                                     0         15          -                      
+    covered/total bins:                                    17         17          -                      
+    missing/total bins:                                     0         17          -                      
     % Hit:                                            100.00%        100          -                      
     Coverpoint reciver_data                           100.00%        100          -    Covered              
         covered/total bins:                                 4          4          -                      
@@ -131,13 +131,13 @@ Covergroup                                             Metric       Goal       B
         missing/total bins:                                 0          6          -                      
         % Hit:                                        100.00%        100          -                      
     Cross cross_mosi_SS_n                             100.00%        100          -    Covered              
-        covered/total bins:                                 2          2          -                      
-        missing/total bins:                                 0          2          -                      
+        covered/total bins:                                 4          4          -                      
+        missing/total bins:                                 0          4          -                      
         % Hit:                                        100.00%        100          -                      
  Covergroup instance \/SPI_coverage_pkg::SPI_coverage::cvr_grp_SPI_SLAVE  
                                                       100.00%        100          -    Covered              
-    covered/total bins:                                    15         15          -                      
-    missing/total bins:                                     0         15          -                      
+    covered/total bins:                                    17         17          -                      
+    missing/total bins:                                     0         17          -                      
     % Hit:                                            100.00%        100          -                      
     Coverpoint reciver_data                           100.00%        100          -    Covered              
         covered/total bins:                                 4          4          -                      
@@ -173,12 +173,14 @@ Covergroup                                             Metric       Goal       B
         bin mosi_val_low                                 7957          1          -    Covered              
         bin mosi_val_high                                7044          1          -    Covered              
     Cross cross_mosi_SS_n                             100.00%        100          -    Covered              
-        covered/total bins:                                 2          2          -                      
-        missing/total bins:                                 0          2          -                      
+        covered/total bins:                                 4          4          -                      
+        missing/total bins:                                 0          4          -                      
         % Hit:                                        100.00%        100          -                      
         Auto, Default and User Defined Bins:
-            bin SS_n_low_mosi_low                        7427          1          -    Covered              
-            bin SS_n_low_mosi_high                       6576          1          -    Covered              
+            bin SS_n_low_write_add                       2647          1          -    Covered              
+            bin SS_n_low_write_data                      1739          1          -    Covered              
+            bin SS_n_low_read_add                        1687          1          -    Covered              
+            bin SS_n_low_read_data                       1769          1          -    Covered              
  TYPE /SPI_coverage_pkg/SPI_coverage/cvr_grp_RAM      100.00%        100          -    Covered              
     covered/total bins:                                    11         11          -                      
     missing/total bins:                                     0         11          -                      
@@ -249,8 +251,8 @@ Covergroup                                             Metric       Goal       B
 ----------------------------------------------------------------------------------------------------------
  TYPE /SPI_coverage_pkg/SPI_coverage/cvr_grp_SPI_SLAVE 
                                                       100.00%        100          -    Covered              
-    covered/total bins:                                    15         15          -                      
-    missing/total bins:                                     0         15          -                      
+    covered/total bins:                                    17         17          -                      
+    missing/total bins:                                     0         17          -                      
     % Hit:                                            100.00%        100          -                      
     Coverpoint reciver_data                           100.00%        100          -    Covered              
         covered/total bins:                                 4          4          -                      
@@ -273,13 +275,13 @@ Covergroup                                             Metric       Goal       B
         missing/total bins:                                 0          6          -                      
         % Hit:                                        100.00%        100          -                      
     Cross cross_mosi_SS_n                             100.00%        100          -    Covered              
-        covered/total bins:                                 2          2          -                      
-        missing/total bins:                                 0          2          -                      
+        covered/total bins:                                 4          4          -                      
+        missing/total bins:                                 0          4          -                      
         % Hit:                                        100.00%        100          -                      
  Covergroup instance \/SPI_coverage_pkg::SPI_coverage::cvr_grp_SPI_SLAVE  
                                                       100.00%        100          -    Covered              
-    covered/total bins:                                    15         15          -                      
-    missing/total bins:                                     0         15          -                      
+    covered/total bins:                                    17         17          -                      
+    missing/total bins:                                     0         17          -                      
     % Hit:                                            100.00%        100          -                      
     Coverpoint reciver_data                           100.00%        100          -    Covered              
         covered/total bins:                                 4          4          -                      
@@ -315,12 +317,14 @@ Covergroup                                             Metric       Goal       B
         bin mosi_val_low                                 7957          1          -    Covered              
         bin mosi_val_high                                7044          1          -    Covered              
     Cross cross_mosi_SS_n                             100.00%        100          -    Covered              
-        covered/total bins:                                 2          2          -                      
-        missing/total bins:                                 0          2          -                      
+        covered/total bins:                                 4          4          -                      
+        missing/total bins:                                 0          4          -                      
         % Hit:                                        100.00%        100          -                      
         Auto, Default and User Defined Bins:
-            bin SS_n_low_mosi_low                        7427          1          -    Covered              
-            bin SS_n_low_mosi_high                       6576          1          -    Covered              
+            bin SS_n_low_write_add                       2647          1          -    Covered              
+            bin SS_n_low_write_data                      1739          1          -    Covered              
+            bin SS_n_low_read_add                        1687          1          -    Covered              
+            bin SS_n_low_read_data                       1769          1          -    Covered              
  TYPE /SPI_coverage_pkg/SPI_coverage/cvr_grp_RAM      100.00%        100          -    Covered              
     covered/total bins:                                    11         11          -                      
     missing/total bins:                                     0         11          -                      
