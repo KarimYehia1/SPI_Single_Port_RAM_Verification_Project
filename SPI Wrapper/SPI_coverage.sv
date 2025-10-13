@@ -44,11 +44,15 @@ package SPI_coverage_pkg;
                 bins mosi_val_high={1};
             }
 
-            cross_mosi_SS_n : cross mosi,SS_n {
-                option.cross_auto_bin_max=0;
-                bins SS_n_low_mosi_low = binsof(SS_n.SS_n_val) && binsof(mosi.mosi_val_low);
-                bins SS_n_low_mosi_high = binsof(SS_n.SS_n_val)  && binsof(mosi.mosi_val_high);
-            }
+           cross_mosi_ss_n : cross mosi,ss_n
+                {
+                    option.cross_auto_bin_max=0;
+                    bins ss_n_low_write_add = binsof(ss_n.ss_n_val)  && binsof(mosi.write_add);
+                    bins ss_n_low_write_data = binsof(ss_n.ss_n_val)  && binsof(mosi.write_data);
+                    bins ss_n_low_read_add = binsof(ss_n.ss_n_val)  && binsof(mosi.read_add);
+                    bins ss_n_low_read_data = binsof(ss_n.ss_n_val)  && binsof(mosi.read_data);
+                }
+
 
         endgroup
 
