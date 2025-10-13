@@ -5,7 +5,7 @@ property RESET;
     @(posedge clk) !rst_n |=> !MISO;
 endproperty
 
-// Detect a READ_DATA command pattern (simplified example)
+// Detect a READ_DATA command pattern
 sequence READ_DATA_SEQUENCE;
     $fell(SS_n) ##1 (MOSI[->3] ##0 1'b1); // detect 3 bits + some end marker
 endsequence
